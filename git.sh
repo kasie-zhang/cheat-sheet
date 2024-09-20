@@ -38,6 +38,13 @@ git push origin --delete <tag_name>     # Delete the remote tag
 
 
 #------------------------------
+# Branch
+#------------------------------
+git checkout <branch_name>              # Switch to a different branch
+git checkout -b <new_branch_name>       # Create and switch to a new branch
+git checkout <branch_or_commit> -- <file_path>  # Restore a file to a specific commit or branch version
+
+#------------------------------
 # Edit
 #------------------------------
 git rm file                     # Remove file in disk and stage it for next commit
@@ -75,9 +82,6 @@ git status                      # Checking status of your files
 git diff                        # See unstaged changes
 git diff --staged               # See staged changes
 
-#------------------------------
-# Branch
-#------------------------------
 
 
 #------------------------------
