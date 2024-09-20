@@ -40,8 +40,10 @@ git push origin --delete <tag_name>     # Delete the remote tag
 #------------------------------
 # Branch
 #------------------------------
+# Switch branches
 git checkout <branch_name>              # Switch to a different branch
 git checkout -b <new_branch_name>       # Create and switch to a new branch
+# Restore files
 git checkout <branch_or_commit> -- <file_path>  # Restore a file to a specific commit or branch version
 
 #------------------------------
