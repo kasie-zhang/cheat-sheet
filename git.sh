@@ -20,15 +20,16 @@ git remote remove <name>                # Remove remote
 #------------------------------
 # Fetch / Pull
 #------------------------------
-git fetch remote
+git fetch                               # Fetch updates from current branch's upstream
+git fetch --all                         # Fetch all remote upstreams
 
 #------------------------------
 # Tagging
 #------------------------------
 # Create tag
 git tag v1.0                            # Create a lightweight tag
-git tag -a <tag_name> -m "Version 1.0"        # Create an annotated tag
-git tag -a <tag_name> <checksum>              # Tagging past commits
+git tag -a <tag_name> -m "Version 1.0"  # Create an annotated tag
+git tag -a <tag_name> <checksum>        # Tagging past commits
 # Show tag info
 git tag                                 # Show all tags
 git tag -l "pattern"                    # Show matched tags
@@ -59,6 +60,11 @@ git branch -v                         # List local branches (branch name + last 
 git branch -vv                        # List local branches (branch name + last commit + upstream)
 git branch --merged                   # List branches you have merged into the branch you're current on (Fine to delete)
 git branch --no-merged                # List branches you haven't merged into the branch you're current on
+
+#------------------------------
+# Rebase
+#------------------------------
+git rebase --onto <new_base> <old_base> <branch_A/commit_A>     # Change branch_A/commit_A from one parent (old_base) to new_base
 
 #------------------------------
 # Edit
