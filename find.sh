@@ -19,7 +19,7 @@ find /path -mindepth 0 -maxdepth 2 -name "*.txt"
 #------------------------------
 # Find exclude specific directory (prune is a condition filter)
 #------------------------------
-find /home/user -path /home/user/tmp -prune -or -name "*.log" -print
+find /home/user -path /home/user/tmp -prune -o -name "*.log" -print
 
 #------------------------------
 # Find by size (k, M, G)
@@ -80,7 +80,7 @@ find /path -gid 1000
 #------------------------------
 # Find by multiple conditions (use () to group conditions)
 #------------------------------
-find /path \( -name "*.txt" -or -name "*.jpg" \) -and -size +1M
+find /path \( -name "*.txt" -o -name "*.jpg" \) -a -size +1M
 
 #------------------------------
 # Find using regex
