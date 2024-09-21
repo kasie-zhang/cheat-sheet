@@ -40,11 +40,24 @@ git push origin --delete <tag_name>     # Delete the remote tag
 #------------------------------
 # Branch
 #------------------------------
-# Switch branches
-git checkout <branch_name>              # Switch to a different branch
-git checkout -b <new_branch_name>       # Create and switch to a new branch
-# Restore files
-git checkout <branch_or_commit> -- <file_path>  # Restore a file to a specific commit or branch version
+# Create branch
+git switch -c <new_branch_name>       # Create and switch to a new branch, upstream is default
+git switch -c <new_branch_name> origin/<remote_branch>      # Create and switch to a new branch, upstream is remote_branch
+# Set upstream
+git branch -u origin/<local_branch_name>    # Set upstream tracking branch for your current local branch
+# Switch branch
+git switch <branch_name>              # Switch to a different branch
+git switch -f <branch_name>           # Switch to a branch and discard local changes
+# Change branch name
+git branch --move <old_name> <new_name>     # Change branch name
+# Delete branch
+git branch -d <branch_name>           # Delete local branch
+# List branches
+git branch                            # List local branches (branch name)
+git branch -v                         # List local branches (branch name + last commit)
+git branch -vv                        # List local branches (branch name + last commit + upstream)
+git branch --merged                   # List branches you have merged into the branch you're current on (Fine to delete)
+git branch --no-merged                # List branches you haven't merged into the branch you're current on
 
 #------------------------------
 # Edit
@@ -58,6 +71,7 @@ git rm --cached file            # Keep file in disk, remove from repository, ign
 git add file                    # Add file to staging area, prepare for next commit
 git restore --staged file       # Unstage a file, keeping the changes
 git restore file                # Discard unstaged parts in a local file
+git restore --source=<branch/commit_checksum> -- file   # Restore a file to a specific commit or branch version 
 
 #------------------------------
 # Commit
