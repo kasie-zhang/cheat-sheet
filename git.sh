@@ -20,8 +20,10 @@ git remote remove <name>                # Remove remote
 #------------------------------
 # Fetch / Pull
 #------------------------------
-git fetch                               # Fetch updates from current branch's upstream
-git fetch --all                         # Fetch all remote upstreams
+git fetch                      # Fetch updates from current branch's upstream
+git fetch --all                # Fetch all remote upstreams
+git pull                       # Fetch the latest chagnes from remote and merge them into your current branch
+git pull --rebase              # Fetch the latest changes from remote and reapply your local commits on top of the fetched changes
 
 #------------------------------
 # Tagging
@@ -64,7 +66,10 @@ git branch --no-merged                # List branches you haven't merged into th
 #------------------------------
 # Rebase
 #------------------------------
-git rebase --onto <new_base> <old_base> <branch_A/commit_A>     # Change branch_A/commit_A from one parent (old_base) to new_base
+# Reapply branch commits on top of latest master commit
+git rebase master
+# Forget commits from upstream, reapply branch commits on top of the latest new_base commit
+git rebase --onto <new_base> <upstream> <branch>
 
 #------------------------------
 # Edit
