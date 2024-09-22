@@ -27,10 +27,13 @@ git pull --rebase              # Fetch the latest changes from remote and reappl
 #------------------------------
 # Tagging
 #------------------------------
-# Create tag
+# Create lightweight tag
 git tag v1.0                            # Create a lightweight tag
+git tag v1.1 <checksum>                 # Create a lightweight tag with past commit (point to commit)
+git update-ref refs/tags/v1.0 <checksum>        # Create a lightweight tag
+# Create annotated tag
 git tag -a <tag_name> -m "Version 1.0"  # Create an annotated tag
-git tag -a <tag_name> <checksum>        # Tagging past commits
+git tag -a <tag_name> <checksum> -m "V1.0"       # Tagging past commits (create tag object and point to it)
 # Show tag info
 git tag                                 # Show all tags
 git tag -l "pattern"                    # Show matched tags
@@ -44,15 +47,16 @@ git push origin --delete <tag_name>     # Delete the remote tag
 # Branch
 #------------------------------
 # Create branch
-git switch -c <new_branch_name>       # Create and switch to a new branch, upstream is default
-git switch -c <new_branch_name> origin/<remote_branch>      # Create and switch to a new branch, upstream is remote_branch
+git branch <branch>                   # Create a branch
+git switch -c <branch>                # Create a branch and switch to it
+git switch -c <branch> origin/<remote_branch>   # Create a branch and switch to it, upstream is remote_branch
 # Set upstream
-git branch -u origin/<local_branch_name>    # Set upstream tracking branch for your current local branch
+git branch -u origin/<local_branch_name>        # Set upstream tracking branch for your current local branch
 # Switch branch
-git switch <branch_name>              # Switch to a different branch
-git switch -f <branch_name>           # Switch to a branch and discard local changes
+git switch <branch>                   # Switch to a different branch
+git switch -f <branch>                # Switch to a branch and discard local changes
 # Change branch name
-git branch --move <old_name> <new_name>     # Change branch name
+git branch --move <old_name> <new_name>         # Change branch name
 # Delete branch
 git branch -d <branch_name>           # Delete local branch
 # List branches
@@ -90,6 +94,7 @@ git restore --source=<branch/commit_checksum> -- file   # Restore a file to a sp
 git commit                      # Commit in editor
 git commit -m "xxx"             # Commit inline
 git commit --amend              # Redo commit
+git reset --soft HEAD^          # Undo last commit (keep changes), Jump to HEAD^ commit
 
 #------------------------------
 # Push
@@ -112,7 +117,7 @@ git diff --staged               # See staged changes
 
 
 #------------------------------
-# Search Commit History
+# Commit History
 #------------------------------
 git log                         # Viewing the commit history
 git log -p                      # Show commit patches
@@ -130,3 +135,45 @@ git log --grep "pattern"
 git log -S 'return 0;'
 # Show commits by file
 git log -- /path/to/file
+
+#------------------------------
+# Search
+#------------------------------
+git grep -n "pattern"          # Search pattern through the files
+
+#------------------------------
+# Debug
+#------------------------------
+git blame -L 10,20 file        # Determine which commit and commiter was resposible for buggy lines
+
+#------------------------------
+# Sub Module
+#------------------------------
+git submodule add <url>        # Add a submodule
+
+#------------------------------
+# Bundling
+#------------------------------
+git bundle create repo.bundle HEAD master   # Package all repo data into a bundle, you can re-create the repo's master branch from it 
+git clone repo.bundle repo                  # Clone from the binary file into a directory
+
+#------------------------------
+# Git Objects
+#------------------------------
+git hash-object -w file       # Write the object to the database
+git cat-file -p <checksum>    # Preview the content
+git cat-file -t <checksum>    # Show the type of a git object
+
+#------------------------------
+# Git Reference
+#------------------------------
+git update-ref refs/heads/test <checksum>       # Update a git reference
+git update-ref refs/tags/v1.0 <checksum>        # Create a lightweight tag (point to commit)
+git symbolic-ref HEAD                           # Show the value of your HEAD
+# Change the branch reference without updating your working directory (Don't use it)
+git symbolic-ref HEAD refs/heads/test           # Set the value of your HEAD 
+
+#------------------------------
+# Git Garbage Collection
+#------------------------------
+git gc                         # Clean up unnecessary files and optimizing the data structure 
