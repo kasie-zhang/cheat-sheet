@@ -59,6 +59,7 @@ git switch -f <branch>                # Switch to a branch and discard local cha
 git branch --move <old_name> <new_name>         # Change branch name
 # Delete branch
 git branch -d <branch_name>           # Delete local branch
+git push origin --delete <branch>     # Delete remote branch
 # List branches
 git branch                            # List local branches (branch name)
 git branch -v                         # List local branches (branch name + last commit)
@@ -177,3 +178,19 @@ git symbolic-ref HEAD refs/heads/test           # Set the value of your HEAD
 # Git Garbage Collection
 #------------------------------
 git gc                         # Clean up unnecessary files and optimizing the data structure 
+
+#------------------------------
+# Packfile
+#------------------------------
+# Backup
+git bundle create xxx.bundle --all
+git clone xxx.bundle repo_name
+# Move pack, idx, rev file to `.git/objects/pack` to use it directly
+git gc                          # Pack git objects, create .idx, .pack, .rev file, remove all loose files
+git repack -a -d --max-pack-size=100M
+# Extract pack file and use it
+git unpack-objects < xxx.pack   # Extracting git objects to .git/objects directory
+# Verify the repository
+git fsck
+# List
+git verify-pack -v xxx.idx      # List objects in a packfile
