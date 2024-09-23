@@ -175,11 +175,6 @@ git symbolic-ref HEAD                           # Show the value of your HEAD
 git symbolic-ref HEAD refs/heads/test           # Set the value of your HEAD 
 
 #------------------------------
-# Git Garbage Collection
-#------------------------------
-git gc                         # Clean up unnecessary files and optimizing the data structure 
-
-#------------------------------
 # Packfile
 #------------------------------
 # Backup
@@ -194,3 +189,17 @@ git unpack-objects < xxx.pack   # Extracting git objects to .git/objects directo
 git fsck
 # List
 git verify-pack -v xxx.idx      # List objects in a packfile
+
+
+#------------------------------
+# Patch
+#------------------------------
+# Create a patch
+git format-patch -1             # Create patch for last commit
+git format-patch 1ds2..HEAD     # Create patches for specific range of commits
+git format-patch -1 -o patches/ # Create patch for last commit, set output to patches
+git format-patch -1 --signoff   # Add `Signed-off-by: ` in patch file
+# Apply patch
+git am <patch_file>
+git am --continue               # Continue after resolving conflicts
+git am --abort                  # Abort the patch application
