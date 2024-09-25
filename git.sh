@@ -38,6 +38,7 @@ git tag -a <tag_name> <checksum> -m "V1.0"       # Tagging past commits (create 
 git tag                                 # Show all tags
 git tag -l "pattern"                    # Show matched tags
 git show <tag_name>                     # Show tag data
+git describe                            # Show the closest tag to the current commit
 # Delete tag
 git tag -d <tag_name>                   # Delete the local tag
 git push origin --delete <tag_name>     # Delete the remote tag
@@ -97,6 +98,7 @@ git commit -m "xxx"             # Commit inline
 git commit --amend              # Redo commit
 git reset --soft HEAD^          # Undo last commit (keep changes), Jump to HEAD^ commit
 git cherry-pick <commit>        # Copy a commit from one branch to another
+git revert <commit>             # Keep the commit history, and create a new commit to undo the changes
 
 #------------------------------
 # Push
@@ -113,8 +115,8 @@ git push origin --delete <tag_name>  # Delete the remote tag
 # Check Status
 #------------------------------
 git status                      # Checking status of your files
-git diff                        # See unstaged changes
-git diff --staged               # See staged changes
+git diff                        # <Staging Area> vs. <Working Directory>
+git diff --staged               # <Last Commit> vs. <Staging Area>
 
 
 
@@ -210,7 +212,8 @@ git am --abort                  # Abort the patch application
 #------------------------------
 git stash                       # Hidden all changes, keep directory clean
 git stash apply                 # Restore changes to branch
-git stash branch                # Move all changes to a new branch
 git statsh drop                 # Remove one stash from stash list
-git statsh list                 # List all stashes
 git statsh pop                  # Remove latest stash from stash list, and apply it to directory
+git statsh list                 # List all stashes
+git statsh show                 # Show the changes in the stash as a diff
+git stash branch <new_branch> stash@\{0\}               # Apply stash changes to new branch
