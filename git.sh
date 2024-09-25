@@ -96,6 +96,7 @@ git commit                      # Commit in editor
 git commit -m "xxx"             # Commit inline
 git commit --amend              # Redo commit
 git reset --soft HEAD^          # Undo last commit (keep changes), Jump to HEAD^ commit
+git cherry-pick <commit>        # Copy a commit from one branch to another
 
 #------------------------------
 # Push
@@ -203,3 +204,13 @@ git format-patch -1 --signoff   # Add `Signed-off-by: ` in patch file
 git am <patch_file>
 git am --continue               # Continue after resolving conflicts
 git am --abort                  # Abort the patch application
+
+#------------------------------
+# Stash
+#------------------------------
+git stash                       # Hidden all changes, keep directory clean
+git stash apply                 # Restore changes to branch
+git stash branch                # Move all changes to a new branch
+git statsh drop                 # Remove one stash from stash list
+git statsh list                 # List all stashes
+git statsh pop                  # Remove latest stash from stash list, and apply it to directory
