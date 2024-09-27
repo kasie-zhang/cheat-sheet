@@ -60,6 +60,18 @@ Alt  + c                        # Fzf search directory
 yy                              # Open yazi
 
 #------------------------------
+# Alias
+#------------------------------
+als                             # List all alias
+gals "pattern"                  # Search alias
+cpf file                        # Copy file content
+cpp                             # Copy current absolute path
+..                              # cd ..
+...                             # cd ../..
+1                               # Go to directory in top stack
+2                               # Go to directory in top -1 stack
+
+#------------------------------
 # Web Search
 #------------------------------
 google
