@@ -40,6 +40,13 @@ jobs                            # List background jobs
 fg %n                           # Bring job number n to the foreground
 bg %n                           # Bring job number n to the background
 
+#------------------------------
+# Trash
+#------------------------------
+t                               # Trash a file
+tl "pattern" "pattern"          # Trash list (search with pattern)
+tre "trash_name"                # List trash
+te                              # Empty trash
 
 
 
