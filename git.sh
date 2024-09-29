@@ -96,7 +96,9 @@ git restore --source=<branch/commit_checksum> -- file   # Restore a file to a sp
 git commit                      # Commit in editor
 git commit -m "xxx"             # Commit inline
 git commit --amend              # Redo commit
+git reset --mixed HEAD^         # Reset the current branch to the specified commit, clear staging area but keeps your working directory unchanged (Default behavior)
 git reset --soft HEAD^          # Undo last commit (keep changes), Jump to HEAD^ commit
+git reset --hard HEAD^          # Reset the currrent branch to the specified commit, discards all changes in the working directory and staging area
 git cherry-pick <commit>        # Copy a commit from one branch to another
 git revert <commit>             # Keep the commit history, and create a new commit to undo the changes
 
